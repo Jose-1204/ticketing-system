@@ -1,5 +1,7 @@
 // src/controllers/ticketController.js
 
+// src/controllers/ticketController.js
+
 // Importar el modelo Ticket
 const Ticket = require('../models/Ticket');
 
@@ -86,26 +88,10 @@ exports.deleteTicket = async (req, res) => {
             return res.status(404).json({ message: 'Ticket no encontrado.' });
         }
 
-        res.status(204).send(); // Respuesta vacia, solo confirma eliminacion
+        res.status(204).send(); // Respuesta vacía, solo confirma eliminación
     } catch (error) {
         res.status(500).json({ message: 'Error al eliminar el ticket.', error: error.message });
     }
 };
-// src/models/Ticket.js
-
-const mongoose = require('mongoose');
-
-// Esquema del ticket
-const ticketSchema = new mongoose.Schema({
-    title: { type: String, required: true }, // Titulo del ticket (obligatorio)
-    description: { type: String, required: true }, // Descripcion del ticket (obligatorio)
-    status: { type: String, default: 'abierto' }, // Estado del ticket (valor por defecto: 'abierto')
-    createdAt: { type: Date, default: Date.now }, // Fecha de creación (automatica)
-});
-
-// Crea el modelo a partir del esquema
-module.exports = mongoose.model('Ticket', ticketSchema);
-
-
 
 
