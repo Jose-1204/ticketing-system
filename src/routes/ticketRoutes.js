@@ -1,5 +1,5 @@
 // src/routes/ticketRoutes.js
-// Importar Express y el controlador correspondiente
+// Importar Express y el controlador de tickets
 const express = require('express');
 const ticketController = require('../controllers/ticketController');
 

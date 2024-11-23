@@ -1,22 +1,18 @@
 // src/controllers/ticketController.js
 
-// src/controllers/ticketController.js
-
-// Importar el modelo Ticket
-const Ticket = require('../models/Ticket');
+const Ticket = require('../models/Ticket'); // Importar el modelo Ticket
 
 // Crear un ticket
 exports.createTicket = async (req, res) => {
     try {
         const { title, description } = req.body;
-
+        //validacion
         if (!title || !description) {
             return res.status(400).json({ message: 'El título y la descripción son obligatorios.' });
         }
-
         // Crear un nuevo ticket en la base de datos
         const newTicket = new Ticket({ title, description });
-        await newTicket.save(); // Guardar en MongoDB
+        await newTicket.save(); // Guardar en DB
 
         res.status(201).json(newTicket);
     } catch (error) {
@@ -80,7 +76,6 @@ exports.updateTicket = async (req, res) => {
 exports.deleteTicket = async (req, res) => {
     try {
         const { id } = req.params;
-
         // Eliminar el ticket por ID
         const deletedTicket = await Ticket.findByIdAndDelete(id);
 
@@ -93,5 +88,3 @@ exports.deleteTicket = async (req, res) => {
         res.status(500).json({ message: 'Error al eliminar el ticket.', error: error.message });
     }
 };
-
-
